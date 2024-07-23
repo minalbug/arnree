@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Free</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,900&display=swap');
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            background: #054650;
+            color: #211F46;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 620px;
+            height: 530px;
+            margin: 1px auto;
+        }
+        .popup-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            color: #211F46;
+            border-top-right-radius: 27px;
+            border-top-left-radius: 27px;
+            padding: 5px;
+            display: none;
+            box-shadow: 0 2px 4px 1px #000;
+            border: 1px solid #ccc;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 78%; /* Adjust as needed */
+            max-height: 78%;
+            overflow-y: auto;
+        }
+        .popup strong {
+          color: #9B9CA1;
+        }
+        .popup-header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .popup-content {
+            width: 100%;
+        }
+        .popup-content p {
+            display: flex;
+            justify-content: space-between;
+        }
+        .popup-footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .proceed-btn {
+            background-color: #054650;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .close-btn {
+            background-color: transparent;
+        }
+        .close-btn:hover {
+            background-color: transparent;
+        }
+        .proceed-btn:hover {
+            background-color: #054650;
+        }
+        .content {
+            background: #fff;
+            border-radius: 8px;
+            width: 92%;
+            box-shadow: 1px 1px 5px #000;
+            margin: 0 auto;
+            padding: 15px;
+            cursor: pointer;
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #211F46;
+        }
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 5px;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .close-btn {
+          background-color: transparent;
+          color: #000;
+          border: none;
+          font-size: 20px;
+          padding: 10px 20px;
+          cursor: pointer;
+          width: 10px;
+          margin-top: 0;
+          height: 10px;
+          border-radius: 4px;
+        }
+          .bal {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            max-width: 96%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+            margin: 0 auto;
+        }
+        .bal img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .bal .details {
+            flex-grow: 1;
+        }
+        .bal .details .balance {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .bal .details .currency {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .bal .checkmark {
+            color: green;
+            font-size: 1.5em;
+        }
+        .con {
+          width: 97%;
+          margin: 0 auto;
+          height: 220px;
+          border-radius: 8px;
+          margin-top: 17px;
+          cursor: pointer;
+          padding: 9px;
+          margin-bottom: 16px;
+          background: transparent;
+          border: 1px solid #000;
+        }
+        .center-popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .center-popup-footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+  <br>
+  <br>
+  <br>
+    <div class="content">
+        <div class="container">
+            <form id="userForm">
+                <h2 style="text-align: center; padding-bottom: 30px;">Withdraw to Bank</h2>
+                <label for="input1">Account Name:</label>
+                <input type="text" id="input1" name="input1" required><br><br>
+                <label for="input2">Account Number:</label>
+                <input type="tel" id="input2" name="input2" required><br><br>
+                <label for="input3">Amount:</label>
+                <input type="number" id="input3" name="input3" required><br><br>
+                <label for="select1">Select Bank:</label>
+                <select id="select1" name="select1" style="height: 45px; color: #000;" required>
+                    <option value="" disabled selected>Available Banks</option>
+                    <!-- List 25 options directly in HTML -->
+                    <option value="9Payments Service Bank">9Payments Service Bank</option>
+                    <option value="Access Bank PLC">Access Bank PLC</option>
+                    <option value="ACCESSMONEY">ACCESSMONEY</option>
+                    <option value="Carbon">Carbon</option>
+                    <option value="Chase Microfinance Bank">Chase Microfinance Bank</option>
+                    <option value="CitiBank Nigeria">CitiBank Nigeria</option>
+                    <option value="E-Finance">E-Finance</option>
+                    <option value="Eyowo Microfinance Bank">Eyowo Microfinance Bank</option>
+                    <option value="EcoBank Nigeria">EcoBank Nigeria</option>
+                    <option value="eNaira(e-Naira)">eNaira(e-Naira)</option>
+                    <option value="eTransact">eTransact</option>
+                    <option value="FCMB MFB">FCMB MFB</option>
+                    <option value="First Bank Nigeria">First Bank Nigeria</option>
+                    <option value="FairMoney">FairMoney</option>
+                    <option value="Fidelity Bank PLC">Fidelity Bank PLC</option>
+                    <option value="GTBank PLC">GTBank PLC</option>
+                    <option value="Globus Bank">Globus Bank</option>
+                    <option value="GoMoney">GoMoney</option>
+                    <option value="Jaiz Bank">Jaiz Bank</option>
+                    <option value="Keystone Bank">Keystone Bank</option>
+                    <option value="Kuda MicroFianance Bank">Kuda MicroFianance Bank</option>
+                    <option value="Lotus Bank">Lotus Bank</option>
+                    <option value="MTN MoMO PSB">MTN MoMO PSB</option>
+                    <option value="MoniePoint MicroFianance Bank">MoniePoint MicroFianance Bank</option>
+                    <option value="OPTIMUS BANK">OPTIMUS BANK</option>
+                    <option value="OPAY">OPAY</option>           
+                    <option value="PARRALEX">PARRALEX</option>
+                    <option value="Paga">Paga</option>
+                    <option value="Paystack-Titan">Paystack-Titan</option>
+                    <option value="PalmPay">PalmPay</option>
+                    <option value="Polaris Bank">Polaris Bank</option>
+                    <option value="Providus Bank">Providus Bank</option>            
+                    <option value="SmartCash PSB">SmartCash PSB</option>
+                                   <option value="Sparkle">Sparkle</option>            <option value="Stanbic IBTC Bank">Stanbic IBTC Bank</option>            
+            <option value="Sterling Bank">Sterling Bank</option>            <option value="TITAN TRUST BANK">TITAN TRUST BANK</option>
+            <option value="Union Bank Of Nigeria">Union Bank Of Nigeria</option>            <option value="United Bank for Africa">United Bank for Africa</option>
+            <option value="VFD MicroFianance Bank">VFD MicroFianance Bank</option>            <option value="Wema Bank">Wema Bank</option>
+<option value="ZENITH BANK">ZENITH BANK</option>
+                </select><br><br>
+                      <button type="button" onclick="showPopup()" style="padding: 8px;border: 1px solid #ccc;border-radius: 4px; font-size: 16px;width: 96%;font-family: 'Poppins', sans-serif;color: #000;margin-top: 5px;border: 1px solid #000;border-radius: 6px; width: 100%;">Withdraw</button>
+                      </form>
+                      </div>
+    <div class="popup-container" id="popupContainer">
+      <div class="popup-header">
+        <button class="close-btn" onclick="closePopup()">X</button>
+      </div>
+      <div class="popup-content" id="popupContent"></div>
+      <div class="popup-footer">
+        <button class="proceed-btn" onclick="showCenterPopup()" style="width: 96%; margin-bottom: 16px; font-family: 'Poppins', sans-serif;">Proceed</button>
+      </div>
+    </div>
+
+    <div class="center-popup-container" id="centerPopupContainer">
+      <h3 style="padding-bottom: 13px;">Transaction Not Completed</h3>
+      <p style="color: #9B9CA1;">You will need to pay a 1x fee of ₦7,000.00 to proceed with this transfer.</p>
+      <div class="center-popup-footer">
+        <button class="proceed-btn" onclick="redirectToPage()" style="font-family: 'Poppins', sans-serif; width: 180px; padding: 8px; cursor: pointer;">Proceed</button>
+      </div>
+    </div>
+    </div>
+
+    <script>
+      function showPopup() {
+        // Get form values
+        const input1 = document.getElementById('input1').value;
+        const input2 = document.getElementById('input2').value;
+        const input3 = document.getElementById('input3').value;
+        const select1 = document.getElementById('select1').value;
+
+        // Validate required fields
+        if (!input1 || !input2 || !input3 || !select1) {
+          alert('Fill your Bank Details and proceed!');
+          return;
+        }
+
+        // Show pop-up with form values
+        const popupContent = document.getElementById('popupContent');
+        popupContent.innerHTML = `
+            <center>
+                <strong style="">Withdrawing Amount</strong>
+            </center>
+            <h1 style="font-size: 28px; padding-bottom: 8px; color: #008095; text-align: center;"><strong>₦</strong>${input3}.00</h1>
+            <hr>
+            <div class="con">
+                <p style="padding-top: 15px;"><strong>Account Name:</strong> ${input1}</p>
+                <br>
+                <p><strong>Account Number:</strong> ${input2}</p>
+                <br>
+                <p><strong>Amount:</strong> ${input3}.00</p>
+                <br>
+                <p><strong>Bank:</strong> ${select1}</p>
+            </div>
+            <div class="bal">
+                <img src="bal.jpeg" alt="">
+                <div class="details">
+                    <div>Account Balance</div>
+                    <div class="balance" style="font-size: 19px; font-weight: bold;">&#8358;50,000.00</div>
+                </div>
+                <div class="checkmark">&#10004;</div>
+            </div>
+        `;
+        document.getElementById('popupContainer').style.display = 'flex';
+      }
+
+      function closePopup() {
+        document.getElementById('popupContainer').style.display = 'none';
+      }
+
+      function showCenterPopup() {
+        document.getElementById('centerPopupContainer').style.display = 'flex';
+      }
+
+      function closeCenterPopup() {
+        document.getElementById('centerPopupContainer').style.display = 'none';
+      }
+
+      function redirectToPage() {
+        window.location.href = 'payment.html';
+      }
+    </script>
